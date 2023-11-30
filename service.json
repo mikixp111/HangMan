@@ -1,0 +1,5 @@
+{
+    "name": "HangMan",
+    "link": "/apps/hangMan",
+    "provider": "/src/ServiceProvider.pm"
+}
