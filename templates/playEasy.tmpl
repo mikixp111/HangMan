@@ -1,0 +1,380 @@
+<div>
+
+    <div class="w-32 flex flex-col absolute top-0 left-0 space-y-6 mt-28 ml-6 text-2xl font-bold text-center align-middle">
+
+        <a class="bg-slate-500 text-slate-200 p-2 border-solid border-2 border-slate-500 rounded-lg shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/">
+
+            <i class="fa fa-arrow-left" aria-hidden="true"></i> Back 
+            
+        </a>
+
+    </div>
+
+</div>
+
+<div class="flex justify-center text-slate-500">
+        
+    <div class="flex flex-col">
+
+        <div class="relative text-7xl font-bold">
+            
+            <span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-slate-200 relative inline-block">
+
+                <span class="relative italic">Easy</span>
+
+            </span>
+
+        </div>
+
+    </div> 
+
+</div>
+
+<div class="flex mt-20">
+
+    <div class="h-[550px] w-[445px] border-slate-500 border-solid rounded-2xl border-2 mr-4">
+
+        <div class="w-full h-[546px] rounded-[14px] bg-cover bg-center bg-[url(<TMPL_VAR NAME="THEME_URL">)]">
+
+            <TMPL_IF NAME="DEFAULT">
+                <TMPL_INCLUDE NAME="../default.svg">
+            </TMPL_IF>
+
+            <TMPL_IF NAME="FRENCH">
+                <TMPL_INCLUDE NAME="../french.svg">
+            </TMPL_IF>
+
+            <TMPL_IF NAME="CARIBBEAN">
+                <TMPL_INCLUDE NAME="../caribbean.svg">
+            </TMPL_IF>
+
+            <TMPL_IF NAME="NATIVE_ISLAND">
+                <TMPL_INCLUDE NAME="../nativeIsland.svg">
+            </TMPL_IF>
+
+            <TMPL_IF NAME="NATIVE_JUNGLE">
+                <TMPL_INCLUDE NAME="../nativeJungle.svg">
+            </TMPL_IF>
+
+            <TMPL_IF NAME="WESTERN">
+                <TMPL_INCLUDE NAME="../western.svg">
+            </TMPL_IF>
+
+            <TMPL_IF NAME="ROMAN">
+                <TMPL_INCLUDE NAME="../roman.svg">
+            </TMPL_IF>
+            
+        </div>
+
+    </div>
+
+    <div class="w-2/3 h-[550px] ">
+
+        <div class="w-full flex justify-center">
+
+            <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                <code id="firstLetter" class="hidden"><TMPL_VAR NAME="FIRST_L"></code>
+        
+            </div>
+
+            <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                <code id="secondLetter" class="hidden"><TMPL_VAR NAME="SECOND_L"></code>
+        
+            </div>
+
+            <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                <code id="thirdLetter" class="hidden"><TMPL_VAR NAME="THIRD_L"></code>
+        
+            </div>
+
+            <TMPL_IF NAME="FOUR">
+
+                <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                    <code id="fourthLetter" class="hidden"><TMPL_VAR NAME="FOURTH_L"></code>
+        
+                </div>
+
+            </TMPL_IF>
+            
+
+            <TMPL_IF NAME="FIVE">
+
+                <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                    <code id="fifthLetter" class="hidden"><TMPL_VAR NAME="FIFTH_L"></code>
+        
+                </div>
+
+            </TMPL_IF>
+
+            <TMPL_IF NAME="SIX">
+
+                <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                    <code id="sixthLetter" class="hidden"><TMPL_VAR NAME="SIXTH_L"></code>
+        
+                </div>
+
+            </TMPL_IF>
+
+            <TMPL_IF NAME="SEVEN">
+
+                <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                    <code id="seventhLetter" class="hidden"><TMPL_VAR NAME="SEVENTH_L"></code>
+        
+                </div>
+
+            </TMPL_IF>
+
+            <TMPL_IF NAME="EIGHT">
+
+                <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                    <code id="eightLetter" class="hidden"><TMPL_VAR NAME="EIGHT_L"></code>
+        
+                </div>
+
+            </TMPL_IF>
+            
+            <TMPL_IF NAME="NINE">
+
+                <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                    <code id="ninethLetter" class="hidden"><TMPL_VAR NAME="NINETH_L"></code>
+                
+                </div>
+
+            </TMPL_IF>
+
+            <TMPL_IF NAME="TEN">
+
+                <div class="h-32 border-slate-500 border-solid border-b-4 m-2 w-1/12 text-5xl font-semibold text-center flex justify-center items-center">
+
+                    <code id="tenthLetter" class="hidden"><TMPL_VAR NAME="TENTH_L"></code>
+        
+                </div>
+
+            </TMPL_IF>
+
+        </div>
+
+        <div class="w-full h-20 flex justify-center mt-28">
+
+            <button id="keyA" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">A</button>
+
+            <button id="keyB" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">B</button>
+    
+            <button id="keyC" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">C</button>
+
+            <button id="keyD" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">D</button>
+
+            <button id="keyE" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">E</button>
+    
+            <button id="keyF" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">F</button>
+
+            <button id="keyG" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">G</button>
+
+            <button id="keyH" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">H</button>
+    
+            <button id="keyI" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">I</button>
+    
+        </div>
+
+        <div class="w-full h-20 flex justify-center mt-4">
+
+            <button id="keyJ" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">J</button>
+
+            <button id="keyK" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">K</button>
+    
+            <button id="keyL" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">L</button>
+
+            <button id="keyM" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">M</button>
+
+            <button id="keyN" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">N</button>
+    
+            <button id="keyO" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">O</button>
+
+            <button id="keyP" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">P</button>
+
+            <button id="keyQ" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">Q</button>
+    
+            <button id="keyR" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">R</button>
+    
+        </div>
+
+        <div class="w-full h-20 flex justify-center mt-4">
+
+            <button id="keyS" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">S</button>
+
+            <button id="keyT" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">T</button>
+    
+            <button id="keyU" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">U</button>
+
+            <button id="keyV" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">V</button>
+
+            <button id="keyW" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">W</button>
+    
+            <button id="keyX" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">X</button>
+
+            <button id="keyY" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">Y</button>
+
+            <button id="keyZ" class="bg-slate-200 m-2 w-[10%] h-[100%] text-center flex justify-center items-center text-3xl border-solid border-2 border-slate-500 font-bold rounded-2xl shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">Z</button>
+    
+        </div>
+
+    </div>
+
+</div>
+
+<div class="hidden" id="wordLength">
+    
+    <TMPL_VAR NAME="WORD_LENGTH">
+
+</div>
+
+<!-- <div>
+
+    <TMPL_VAR NAME="WORD">
+
+</div> -->
+
+<div id="demo"></div>
+
+<div class="text-2xl pl-28 pt-4 font-thin">
+
+    <span class="before:block before:absolute before:-inset-1 before:-skew-y-1 before:bg-slate-200 relative inline-block">
+
+        <span class="relative italic">Number of tries left : <span id="demo1">8</span></span>
+
+    </span>
+
+</div>
+
+<div class="flex justify-center text-2xl text-slate-500 mt-24">
+
+    <div id="youLost" class="bg-[rgba(0,0,0,0.6)] w-full h-full absolute top-0 flex justify-center items-center invisible">
+
+        <div class="w-[450px] h-[360px] bg-white rounded-2xl text-center relative">
+
+            <div class="pt-8 text-5xl font-bold">
+
+                You Lost!
+
+            </div>
+
+            <div class="pt-6 text-2xl font-bold">
+
+                You earned 0 <i class="fa-solid fa-coins text-yellow-400"></i> !
+
+            </div>
+
+            <div class="text-2xl font-bold">
+
+                The correct word was <TMPL_VAR NAME="WORD">
+
+            </div>
+
+            <div class="w-full">
+
+                <form id="formLost" action="" method="POST">
+
+                    <div class="pt-10">
+
+                        <button value="lost" name="lost" class="text-slate-200 border-solid border-2 border-slate-500 rounded-lg bg-slate-500 text-2xl text-center w-1/3 h-10 shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                            Play Again
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <form action="/apps/hangman/play" method="POST">
+
+                    <div class="pt-6">
+
+                        <button value="lost" name="lost" class="border-solid border-2 border-slate-500 rounded-lg bg-slate-200 text-2xl text-center w-1/3 h-10 shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                            Go Back
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="flex justify-center text-2xl text-slate-500 mt-24">
+
+    <div id="youWon" class="bg-[rgba(0,0,0,0.6)] w-full h-full absolute top-0 flex justify-center items-center invisible">
+
+        <div class="w-[450px] h-[360px] bg-white rounded-2xl text-center relative">
+
+            <div class="pt-8 text-5xl font-bold">
+
+                You Won!
+
+            </div>
+
+            <div class="pt-6 text-2xl font-bold">
+
+                You earned 1 <i class="fa-solid fa-coins text-yellow-400"></i> !
+
+            </div>
+
+            <div class="text-2xl font-bold">
+
+                You guessed the correct word
+
+            </div>
+
+            <div class="w-full">
+
+                <form id="formWon" action="" method="POST">
+
+                    <div class="pt-10">
+
+                        <button value="won" name="wonEasy" class="text-slate-200 border-solid border-2 border-slate-500 rounded-lg bg-slate-500 text-2xl text-center w-1/3 h-10 shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                            Play Again
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+                <form action="/apps/hangman/play" method="POST">
+
+                    <div class="pt-6">
+
+                        <button value="won" name="wonEasy" class="border-solid border-2 border-slate-500 rounded-lg bg-slate-200 text-2xl text-center w-1/3 h-10 shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                            Go Back
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

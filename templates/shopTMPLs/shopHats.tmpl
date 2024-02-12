@@ -1,0 +1,381 @@
+<div class="flex gap-10 justify-center text-slate-500 text-center">
+
+    <div class="pt-[20px]">
+
+        <a  href="/apps/hangman/shop/skins">
+
+            <div class="border-solid border-2  border-slate-500 rounded-lg bg-slate-200 mt-10 w-[250px] h-[60px]  shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5 ">
+    
+                <div class="text-3xl mt-2 font-bold">Skins</div>    
+    
+            </div>
+
+        </a>
+        
+    </div>
+
+    <div class="pt-[20px]">
+
+        <div class="border-solid border-2 border-slate-400 rounded-lg bg-slate-200 mt-10 w-[250px] h-[60px] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px]">
+    
+            <div class="text-3xl text-slate-400 mt-2 font-bold">Hats</div>
+                
+        </div>
+        
+    </div>
+
+    <div class="pt-[20px]">
+        
+        <a  href="/apps/hangman/shop/themes">
+
+            <div class="border-solid border-2 border-slate-500 rounded-lg bg-slate-200 mt-10 w-[250px] h-[60px] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">  
+        
+                <div class="text-3xl mt-2 font-bold">Themes</div>
+    
+            </div>
+
+        </a>
+
+    </div>
+
+</div>
+
+<div class="flex justify-center text-slate-500">
+
+    <div class="flex flex-wrap border-2 border-slate-500 rounded-2xl bg-slate-200 w-[1200px] h-[580px] mt-10">
+
+        <div id="shopOnStart" class="block border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center m-6 mt-16">
+
+                <span class="<TMPL_IF NAME="ALL_BOUGHT">hidden</TMPL_IF> before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Choose a Hat you want to buy! </span>
+    
+                </span>
+
+                <TMPL_IF NAME="ALL_BOUGHT"><span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> You already own every Hat, <br> visit the <a href="/apps/hangman/inventory/hats" class="italic font-thin hover:font-semibold hover:text-slate-700 transition-all duration-300 ">INVENTORY</a> to equip a Hat you like! </span>
+    
+                </span></TMPL_IF>
+
+            </div>
+
+            <TMPL_IF NAME="NOT_ENOUGH_COINS">
+
+                <div  class="text-4xl font-bold text-center m-6 mt-28">
+
+                    Not enough Coins!
+    
+                </div>
+
+            </TMPL_IF>
+
+        </div>
+
+        <div id="firstItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Crown </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-no-repeat bg-center bg-[url(https://i.ibb.co/tLPNSRb/Crown.png)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex grid grid-cols-2 gap-10 m-4 absolute h-[80px] w-[450px] bottom-0">
+
+                <div class="text-4xl font-bold text-center pl-10 m-4 flex justify-center items-center">
+
+                    18&nbsp<i class="fa-solid fa-coins text-yellow-400"></i>
+
+                </div>
+
+                <form action="/apps/hangman/shop/hats" method="POST">
+
+                    <button name="crown" value="18" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                        Buy
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="secondItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Pirate Hat </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-no-repeat bg-center bg-[url(https://i.ibb.co/vsVxQbQ/Pirate-Hat.png)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex grid grid-cols-2 gap-10 m-4 absolute h-[80px] w-[450px] bottom-0">
+
+                <div class="text-4xl font-bold text-center pl-10 m-4 flex justify-center items-center">
+
+                    16&nbsp<i class="fa-solid fa-coins text-yellow-400"></i>
+
+                </div>
+
+                <form action="/apps/hangman/shop/hats" method="POST">
+
+                    <button name="pirateHat" value="16" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                        Buy
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="thirdItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Baseball Cap </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-no-repeat bg-center bg-[url(https://i.ibb.co/gdZB4f1/Baseball-Cap.png)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex grid grid-cols-2 gap-10 m-4 absolute h-[80px] w-[450px] bottom-0">
+
+                <div class="text-4xl font-bold text-center pl-10 m-4 flex justify-center items-center">
+
+                    12&nbsp<i class="fa-solid fa-coins text-yellow-400"></i>
+
+                </div>
+
+                <form action="/apps/hangman/shop/hats" method="POST">
+
+                    <button name="baseballCap" value="12" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                        Buy
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="fourthItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Gladiator Helmet </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-no-repeat bg-center bg-[url(https://i.ibb.co/kGr3FFB/Gladiator-Helmet.png)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex grid grid-cols-2 gap-10 m-4 absolute h-[80px] w-[450px] bottom-0">
+
+                <div class="text-4xl font-bold text-center pl-10 m-4 flex justify-center items-center">
+
+                    20&nbsp<i class="fa-solid fa-coins text-yellow-400"></i>
+
+                </div>
+
+                <form action="/apps/hangman/shop/hats" method="POST">
+
+                    <button name="gladiatorHelmet" value="20" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                        Buy
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="fifthItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Viking Helmet </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-no-repeat bg-center bg-[url(https://i.ibb.co/0n660xy/Hangman-Default-Black-No-Hat-2.png)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex grid grid-cols-2 gap-10 m-4 absolute h-[80px] w-[450px] bottom-0">
+
+                <div class="text-4xl font-bold text-center pl-10 m-4 flex justify-center items-center">
+
+                    14&nbsp<i class="fa-solid fa-coins text-yellow-400"></i>
+
+                </div>
+
+                <form action="/apps/hangman/shop/hats" method="POST">
+
+                    <button name="vikingHelmet" value="14" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                        Buy
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div id="sixthItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Straw Hat </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-no-repeat bg-center bg-[url(https://i.ibb.co/jwmBZNw/StrawHat.png)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex grid grid-cols-2 gap-10 m-4 absolute h-[80px] w-[450px] bottom-0">
+
+                <div class="text-4xl font-bold text-center pl-10 m-4 flex justify-center items-center">
+
+                    18&nbsp<i class="fa-solid fa-coins text-yellow-400"></i>
+
+                </div>
+
+                <form action="/apps/hangman/shop/hats" method="POST">
+
+                    <button name="strawHat" value="18" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+
+                        Buy
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <div class=" my-4 ml-16 w-[600px] h-[400px] text-center">
+
+            <div class="grid grid-cols-3 gap-6 place-content-strech w-[600px] h-[400px]">
+
+                <div id="itemOne" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="HAT_ONE"> contrast-[.3] grayscale pointer-events-none </TMPL_IF> bg-no-repeat bg-[length:111px_130px] bg-center bg-[url(https://i.ibb.co/tLPNSRb/Crown.png)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+
+
+                </div>
+    
+                <div id="itemTwo" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="HAT_TWO"> contrast-[.3] grayscale pointer-events-none </TMPL_IF> bg-no-repeat bg-[length:148px_151px] bg-center bg-[url(https://i.ibb.co/vsVxQbQ/Pirate-Hat.png)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+
+                
+                </div>
+    
+                <div id="itemThree" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="HAT_THREE"> contrast-[.3] grayscale pointer-events-none </TMPL_IF> bg-no-repeat bg-[length:118px_129px] bg-center bg-[url(https://i.ibb.co/gdZB4f1/Baseball-Cap.png)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+
+
+                </div>
+    
+                <div id="itemFour" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="HAT_FOUR"> contrast-[.3] grayscale pointer-events-none </TMPL_IF> bg-no-repeat bg-[length:159px_156px] bg-center bg-[url(https://i.ibb.co/kGr3FFB/Gladiator-Helmet.png)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+
+
+                </div>
+    
+                <div id="itemFive" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="HAT_FIVE"> contrast-[.3] grayscale pointer-events-none </TMPL_IF> bg-no-repeat bg-[length:140px_184px] bg-[center_bottom_2px] bg-[url(https://i.ibb.co/0n660xy/Hangman-Default-Black-No-Hat-2.png)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+
+                    
+                </div>
+     
+                <div id="itemSix" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="HAT_SIX"> contrast-[.3] grayscale pointer-events-none </TMPL_IF> bg-no-repeat bg-[length:160px_138px] bg-center bg-[url(https://i.ibb.co/jwmBZNw/StrawHat.png)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+
+
+                </div>
+
+            </div>
+
+            <div class="text-5xl mt-16 font-bold">
+
+                <TMPL_VAR NAME="COINS"> <i class="fa-solid fa-coins text-yellow-400"></i>
+    
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

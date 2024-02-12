@@ -1,0 +1,438 @@
+<div class="flex gap-10 justify-center text-slate-500 text-center">
+
+    <div class="pt-[20px]">
+
+        <a  href="/apps/hangman/inventory/skins">
+
+            <div class="border-solid border-2  border-slate-500 rounded-lg bg-slate-200 mt-10 w-[250px] h-[60px]  shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5 ">
+    
+                <div class="text-3xl mt-2 font-bold">Skins</div>    
+    
+            </div>
+
+        </a>
+        
+    </div>
+
+    <div class="pt-[20px]">
+
+        <a  href="/apps/hangman/inventory/hats">
+
+            <div class="border-solid border-2 border-slate-500 rounded-lg bg-slate-200 mt-10 w-[250px] h-[60px] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+    
+                <div class="text-3xl mt-2 font-bold">Hats</div>
+            
+            </div>
+
+        </a>
+        
+    </div>
+
+    <div class="pt-[20px]">
+
+        <div class="border-solid border-2 border-slate-400 rounded-lg bg-slate-200 mt-10 w-[250px] h-[60px] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px]">  
+    
+            <div class="text-3xl mt-2 text-slate-400 font-bold">Themes</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="flex justify-center text-slate-500">
+
+    <div class="flex flex-wrap border-2 border-slate-500 rounded-2xl bg-slate-200 w-[1200px] h-[580px] mt-10">
+
+        <div id="inventoryOnStart" class="block border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center m-6 mt-16">
+
+                <span class="<TMPL_IF NAME="NONE_BOUGHT">hidden</TMPL_IF> before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Choose a Theme you want to equip! </span>
+    
+                </span>
+
+                <TMPL_IF NAME="NONE_BOUGHT"><span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> You don't own any Themes yet, visit the <a href="/apps/hangman/shop/themes" class="italic font-thin hover:font-semibold hover:text-slate-700 transition-all duration-300 ">SHOP</a> to buy a Theme! </span>
+    
+                </span></TMPL_IF>
+
+            </div>
+
+            <TMPL_IF NAME="ALREADY_EQUIPPED">
+
+                <div  class="text-4xl font-bold text-center m-6 mt-28">
+
+                    Already equipped!
+    
+                </div>
+
+            </TMPL_IF>
+
+        </div>
+
+        <div id="firstItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> French </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-cover bg-center bg-[url(https://i.ibb.co/j8mCLqp/Revolution-resized-Guillotine.jpg)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex gap-10 m-4 absolute h-[80px] w-[450px] bottom-0 justify justify-center">
+                
+                <form action="/apps/hangman/inventory/themes" method="POST">
+                
+                    <button name="french" value="1" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory/themes">
+
+                        Equip
+
+                    </button>
+                
+                </form>
+            
+            </div>
+
+        </div>
+
+        <div id="secondItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Caribbean </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-cover bg-center bg-[url(https://i.ibb.co/LRmy2gX/Pirate-Theme-night.png)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex gap-10 m-4 absolute h-[80px] w-[450px] bottom-0 justify justify-center">
+                
+                <form action="/apps/hangman/inventory/themes" method="POST">
+                
+                    <button name="caribbean" value="1" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory/themes">
+
+                        Equip
+
+                    </button>
+                
+                </form>
+            
+            </div>
+
+        </div>
+
+        <div id="thirdItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Native Island </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-cover bg-center bg-[url(https://i.ibb.co/FqY7X5B/Pot-Boiling.jpg)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex gap-10 m-4 absolute h-[80px] w-[450px] bottom-0 justify justify-center">
+                
+                <form action="/apps/hangman/inventory/themes" method="POST">
+                
+                    <button name="nativeIsland" value="1" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory/themes">
+
+                        Equip
+
+                    </button>
+                
+                </form>
+            
+            </div>
+
+        </div>
+
+        <div id="fourthItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Native Jungle </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-cover bg-center bg-[url(https://i.ibb.co/RbLnvxd/Fire-Burning.jpg)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex gap-10 m-4 absolute h-[80px] w-[450px] bottom-0 justify justify-center">
+                
+                <form action="/apps/hangman/inventory/themes" method="POST">
+                
+                    <button name="nativeJungle" value="1" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory/themes">
+
+                        Equip
+
+                    </button>
+                
+                </form>
+            
+            </div>
+
+        </div>
+
+        <div id="fifthItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Western </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-cover bg-center bg-[url(https://i.ibb.co/JpZvYYz/train-train.jpg)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex gap-10 m-4 absolute h-[80px] w-[450px] bottom-0 justify justify-center">
+                
+                <form action="/apps/hangman/inventory/themes" method="POST">
+                
+                    <button name="western" value="1" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory/themes">
+
+                        Equip
+
+                    </button>
+                
+                </form>
+            
+            </div>
+
+        </div>
+
+        <div id="sixthItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Roman </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-cover bg-center bg-[url(https://i.ibb.co/ZGzJr74/Gladiator-Colloseum.jpg)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex gap-10 m-4 absolute h-[80px] w-[450px] bottom-0 justify justify-center">
+                
+                <form action="/apps/hangman/inventory/themes" method="POST">
+                
+                    <button name="roman" value="1" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory/themes">
+
+                        Equip
+
+                    </button>
+                
+                </form>
+            
+            </div>
+
+        </div>
+
+        <div id="defaultItem" class="hidden border-solid border-2 border-slate-500 rounded-2xl bg-white my-4 ml-4 w-[500px] h-[544px] relative">
+
+            <div  class="text-4xl font-bold text-center mt-4">
+
+                <span class="before:block before:absolute before:-inset-1 before:-skew-y-[-1.5deg] before:bg-slate-500 relative inline-block">
+
+                    <span class="relative text-slate-200 font-bold italic"> Default </span>
+    
+                </span>
+
+            </div>
+
+            <div class="flex justify-center pt-8">
+
+                <div class="h-[350px] w-[80%] rounded-2xl bg-cover bg-center bg-[url(https://i.ibb.co/b2S24W7/Western2-resized-Standard.jpg)]">
+
+                </div>
+
+            </div>
+
+            <div class="flex gap-10 m-4 absolute h-[80px] w-[450px] bottom-0 justify justify-center">
+                
+                <form action="/apps/hangman/inventory/themes" method="POST">
+                
+                    <button name="defaultTheme" value="1" class="text-2xl w-36 h-14 text-slate-200 font-bold text-center border-solid border-2 border-slate-500 rounded-xl bg-slate-500 m-4 flex justify-center items-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory/themes">
+
+                        Equip
+
+                    </button>
+                
+                </form>
+            
+            </div>
+
+        </div>
+
+        <div class=" my-4 ml-16 w-[600px] h-[400px] text-center">
+
+            <div class="grid grid-cols-3 gap-6 place-content-strech w-[600px] h-[400px]">
+
+                <div id="itemOne" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="ONE_EQ">pointer-events-none</TMPL_IF> <TMPL_IF NAME="THEME_ONE"> contrast-[.3] grayscale pointer-events-none</TMPL_IF> bg-cover bg-center bg-[url(https://i.ibb.co/j8mCLqp/Revolution-resized-Guillotine.jpg)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+                    <TMPL_IF NAME="ONE_EQ"><div class="absolute"> 
+                    
+                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-[1.5deg] before:bg-slate-200 relative inline-block text-2xl">
+
+                            <span class="relative text-slate-500 font-bold italic"> Equipped </span>
+            
+                        </span>
+                    
+                    </div></TMPL_IF>
+
+                </div>
+    
+                <div id="itemTwo" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="TWO_EQ">pointer-events-none</TMPL_IF> <TMPL_IF NAME="THEME_TWO"> contrast-[.3] grayscale pointer-events-none</TMPL_IF> bg-cover bg-center bg-[url(https://i.ibb.co/LRmy2gX/Pirate-Theme-night.png)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+                    <TMPL_IF NAME="TWO_EQ"><div class="absolute"> 
+                    
+                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-[1.5deg] before:bg-slate-200 relative inline-block text-2xl">
+
+                            <span class="relative text-slate-500 font-bold italic"> Equipped </span>
+            
+                        </span>
+                    
+                    </div></TMPL_IF>
+                
+                </div>
+    
+                <div id="itemThree" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="THREE_EQ">pointer-events-none</TMPL_IF> <TMPL_IF NAME="THEME_THREE"> contrast-[.3] grayscale pointer-events-none</TMPL_IF> bg-cover bg-center bg-[url(https://i.ibb.co/FqY7X5B/Pot-Boiling.jpg)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+                    <TMPL_IF NAME="THREE_EQ"><div class="absolute"> 
+                    
+                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-[1.5deg] before:bg-slate-200 relative inline-block text-2xl">
+
+                            <span class="relative text-slate-500 font-bold italic"> Equipped </span>
+            
+                        </span>
+                    
+                    </div></TMPL_IF>
+
+                </div>
+    
+                <div id="itemFour" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="FOUR_EQ">pointer-events-none</TMPL_IF> <TMPL_IF NAME="THEME_FOUR"> contrast-[.3] grayscale pointer-events-none</TMPL_IF> bg-cover bg-center bg-[url(https://i.ibb.co/RbLnvxd/Fire-Burning.jpg)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+                    <TMPL_IF NAME="FOUR_EQ"><div class="absolute"> 
+                    
+                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-[1.5deg] before:bg-slate-200 relative inline-block text-2xl">
+
+                            <span class="relative text-slate-500 font-bold italic"> Equipped </span>
+            
+                        </span>
+                    
+                    </div></TMPL_IF>
+
+                </div>
+    
+                <div id="itemFive" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="FIVE_EQ">pointer-events-none</TMPL_IF> <TMPL_IF NAME="THEME_FIVE"> contrast-[.3] grayscale pointer-events-none</TMPL_IF> bg-cover bg-center bg-[url(https://i.ibb.co/JpZvYYz/train-train.jpg)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+                    <TMPL_IF NAME="FIVE_EQ"><div class="absolute"> 
+                    
+                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-[1.5deg] before:bg-slate-200 relative inline-block text-2xl">
+
+                            <span class="relative text-slate-500 font-bold italic"> Equipped </span>
+            
+                        </span>
+                    
+                    </div></TMPL_IF>
+                    
+                </div>
+     
+                <div id="itemSix" class="flex items-center justify-center border-2 border-slate-500 rounded-2xl bg-white cursor-pointer <TMPL_IF NAME="SIX_EQ">pointer-events-none</TMPL_IF> <TMPL_IF NAME="THEME_SIX"> contrast-[.3] grayscale pointer-events-none</TMPL_IF> bg-cover bg-center bg-[url(https://i.ibb.co/ZGzJr74/Gladiator-Colloseum.jpg)] shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                    
+                    <TMPL_IF NAME="SIX_EQ"><div class="absolute"> 
+                    
+                        <span class="before:block before:absolute before:-inset-1 before:-skew-y-[1.5deg] before:bg-slate-200 relative inline-block text-2xl">
+
+                            <span class="relative text-slate-500 font-bold italic"> Equipped </span>
+            
+                        </span>
+                    
+                    </div></TMPL_IF>
+
+                </div>
+
+            </div>
+
+            <div id="itemZero" class=" <TMPL_IF NAME="ZERO_EQ">pointer-events-none</TMPL_IF> cursor-pointer text-3xl mx-28 mt-6 border-2 border-slate-500 rounded-2xl bg-white h-[120px] flex items-center justify-center shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5">
+                
+                <div class="<TMPL_IF NAME="ZERO_EQ">hidden</TMPL_IF>">
+                
+                    Choose Default
+                    
+                </div>
+
+                <TMPL_IF NAME="ZERO_EQ"><div>
+                
+                    Default equipped
+                    
+                </div></TMPL_IF>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>

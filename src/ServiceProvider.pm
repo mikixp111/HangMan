@@ -1,4 +1,4 @@
-package HangMan::ServiceProvider;
+package Hangman::ServiceProvider;
 
 use parent qw(
     Foundation::ServiceProvider
@@ -17,10 +17,10 @@ sub register {
 
     $self->SUPER::register();
 
-    # Extend the user model with the method "isHangManAdmin". This method can be
+    # Extend the user model with the method "isHangmanAdmin". This method can be
     # called without it having to actually exist. Instead the closure below will
     # be executed.
-    macro('Models::User', 'isHangManAdmin', sub {
+    macro('Models::User', 'isHangmanAdmin', sub {
         return 0;
     });
 

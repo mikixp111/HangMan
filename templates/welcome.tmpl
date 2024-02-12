@@ -1,20 +1,72 @@
+<style>
+    .photo{
+        transform-origin:  35px 60px;
+        animation: swing 1000ms ease-in-out infinite alternate-reverse;
+    }
+    
+    @keyframes swing{
+        from { transform: rotate(2deg); }
+        to { transform: rotate(-2deg); }
+        
+    }
+    
+    .shadow{
+        transform-origin: center -20px;
+        animation: move 1000ms ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes move{
+        from { transform: translate(-10px, 0); }
+        to { transform: translate(6px, 0); }
+        
+    }
+    
+</style>
 <div>
 
-    <div class="flex justify-end text-lg">
-        <a class="text-slate-200 hover:text-slate-500 py-1 px-2 transition duration-500" href="/apps/hangMan/admin" title="Administration"><i class="fa-solid fa-terminal"></i></a>
+    <div class="w-32 flex flex-col absolute top-0 left-0 space-y-6 mt-28 ml-6 text-2xl font-bold text-center align-middle">
+
+        <a class="bg-slate-500 text-slate-200 p-2 border-solid border-2 border-slate-500 rounded-lg shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/profile">
+            
+            Profile
+        
+        </a>
+
+        <div class="text-3xl">
+
+            <TMPL_VAR NAME="COINS"> <i class="fa-solid fa-coins text-yellow-400"></i>
+
+        </div>
+
     </div>
 
-    <div class="flex justify-center text-2xl text-slate-500 mt-24">
+    <div class="flex justify-end text-lg">
+        <a class="text-slate-200 hover:text-slate-500 py-1 px-2 transition duration-500" href="/apps/hangman/admin" title="Administration"><i class="fa-solid fa-terminal"></i></a>
+    </div>
+
+    <div class="flex justify-center text-2xl text-slate-500 mt-16">
 
         <div class="flex flex-col">
     
-            <div>
+            <div class="relative ">
 
-                <span>Welcome to</span>
+                <TMPL_INCLUDE NAME="../hangman.svg">
 
-                <button>
-                    <code id="hangMan" class="transition duration-500 text-slate-50 bg-slate-500 rounded py-1 px-2 border-r-4 hover:text-slate-500 hover:bg-slate-50">hangMan</code>
-                </button>
+                <div class="shadow">
+
+                    <div class="bg-[rgba(0,0,15,0.35)] rounded-[50%] w-[120px] h-[40px] absolute flex flex-col bottom-[-45px] left-[25px] blur-md"></div>
+
+                </div>
+
+                <div class="w-64 flex flex-col absolute top-0 right-0 space-y-6 mt-32 mr-8 text-3xl font-bold text-center">
+
+                    <a class="bg-slate-200 p-2 border-solid border-2 border-slate-500 rounded-lg shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/play">Play</a>
+
+                    <a class="bg-slate-200 p-2 border-solid border-2 border-slate-500 rounded-lg shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/inventory">Inventory</a>
+
+                    <a class="bg-slate-200 p-2 border-solid border-2 border-slate-500 rounded-lg shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5" href="/apps/hangman/shop">Shop</a>
+
+                </div>
 
             </div>
 
@@ -22,4 +74,109 @@
 
     </div>
 
+    <div class="group">
+
+        <div class="flex justify-center border-b-4 border-solid border-slate-500">
+
+            <div class="max-w-[700px] w-[700px] h-[200px] mt-24 grid grid-rows-4 grid-flow-col gap-4 text-2xl font-bold">
+    
+                <div class="max-w-[222.6px] w-[222.6px] row-start-2 row-span-3 col-span-1 bg-slate-200 border-2 border-b-0 border-solid border-slate-500 rounded-t-xl text-center inline-block align-middle">
+            
+                    <div class="mt-2 text-2xl">2</div>
+    
+                    <div class="mt-[62px] text-[silver] text-lg">
+                        
+                        <span id="secondPlayerButton" class="shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5 cursor-pointer before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-slate-500 relative inline-block">
+
+                            <span class="relative italic"><TMPL_VAR NAME="USER_SECOND"></span>
+        
+                        </span>
+    
+                    </div>
+    
+                </div>
+    
+                <div class="max-w-[222.6px] w-[222.6px] row-start-1 row-end-5 col-span-1 bg-slate-200 border-2 border-b-0 border-solid border-slate-500 rounded-t-xl text-center">
+    
+                    <div class="mt-2 text-2xl">1</div>
+    
+                    <div class="mt-[34px] text-base font-semibold">
+                    
+                        Wins: <TMPL_VAR NAME="WINS_FIRST">
+    
+                    </div>
+    
+                    <div class="mt text-base font-semibold">
+                        
+                        Losses: <TMPL_VAR NAME="LOSSES_FIRST">
+    
+                    </div>
+    
+                    <div class="mt-[34px] text-amber-400 text-lg">
+                        
+                        <span id="firstPlayerButton" class="shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5 cursor-pointer before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-slate-500 relative inline-block">
+
+                            <span class="relative italic"><TMPL_VAR NAME="USER_FIRST"></span>
+        
+                        </span>
+    
+                    </div>
+                    
+                </div>
+    
+                <div class="max-w-[222.6px] w-[222.6px] row-start-3 row-span-2 col-span-1 bg-slate-200 border-2 border-b-0 border-solid border-slate-500 rounded-t-xl text-center">
+    
+                    <div class="mt-2 text-2xl">3</div>
+    
+                    <div class="mt-2 text-[#CD7F32] text-lg">
+                        
+                        <span id="thirdPlayerButton" class="shadow-[rgba(0,0,15,0.35)_8px_8px_6px_0px] duration-100 hover:shadow-[rgba(0,0,15,0.35)_6px_6px_6px_0px] hover:translate-y-0.5 hover:translate-x-0.5 cursor-pointer before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-slate-500 relative inline-block">
+
+                            <span class="relative italic"><TMPL_VAR NAME="USER_THIRD"></span>
+        
+                        </span>
+    
+                    </div>
+                    
+                </div>
+                
+            </div>
+    
+        </div>
+    
+        <div class="mt-4 text-4xl font-normal text-center">
+                        
+            Leaderboard
+    
+        </div>
+
+    </div>
+    
+    <div class="flex justify-center">
+
+        <TMPL_IF NAME="FIRST_VISIT">
+            <TMPL_INCLUDE NAME="/welcomeTMPLs/welcomeFirstVisit.tmpl">
+        </TMPL_IF>
+
+        <div id="firstPlayer" class="hidden w-full h-full absolute top-0 flex justify-center items-center">
+            <TMPL_INCLUDE NAME="/welcomeTMPLs/firstPlayer.tmpl">
+        </div>
+
+        <div id="secondPlayer" class="hidden w-full h-full absolute top-0 flex justify-center items-center">
+            <TMPL_INCLUDE NAME="/welcomeTMPLs/secondPlayer.tmpl">
+        </div>
+
+        <div id="thirdPlayer" class="hidden w-full h-full absolute top-0 flex justify-center items-center">
+            <TMPL_INCLUDE NAME="/welcomeTMPLs/thirdPlayer.tmpl">
+        </div>
+
+        <TMPL_IF NAME="TUTORIAL">
+            <div class="w-full h-full absolute top-0 flex justify-center items-center">
+                <TMPL_INCLUDE NAME="/welcomeTMPLs/tutorial.tmpl">
+            </div>
+        </TMPL_IF>
+
+    </div>
+    
 </div>
+
