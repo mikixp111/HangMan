@@ -13,14 +13,8 @@ sub new {
     my $self = {
         attributes => $attributes,
         columns => [
-            'username',
-            'id_0',
-            'id_1',
-            'id_2',
-            'id_3',
-            'id_4',
-            'id_5',
-            'id_6'
+            'user_id',
+            'theme_id'
         ],
     };
     bless($self, $class);
@@ -28,52 +22,16 @@ sub new {
     return $self;
 }
 
-sub getUsername {
+sub getUserId {
     my $self = shift;
 
-    return $self->{attributes}->{username};
+    return $self->{attributes}->{user_id};
 }
 
-sub getIdZero {
+sub getThemeId {
     my $self = shift;
 
-    return $self->{attributes}->{id_0};
-}
-
-sub getIdOne {
-    my $self = shift;
-
-    return $self->{attributes}->{id_1};
-}
-
-sub getIdTwo {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_2};
-}
-
-sub getIdThree {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_3};
-}
-
-sub getIdFour {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_4};
-}
-
-sub getIdFive {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_5};
-}
-
-sub getIdSix {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_6};
+    return $self->{attributes}->{theme_id};
 }
 
 sub save {

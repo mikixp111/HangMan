@@ -25,21 +25,10 @@ sub welcome {
 
     &$leaderboard();
 
-    # my $hatsRepository = Repositories::HatsRepository->new();
-    # my $allHats = $hatsRepository->selectHats();
-    # my $hatId = @$allHats[3]->[0];
-    # my $paramtest = 4;
+    # my $test = ("nativeIsland");
+    # $test =~  s/(?=[A-Z])/ /g;
+    # die Dumper(ucfirst($test));
     
-    
-    # foreach my $hat (@$allHats) {
-    #     if (@$hat[0] eq $paramtest) {
-    #         my $hatsId = $hatsRepository->findById($paramtest, 'getId');
-    #         my $hatsName = $hatsRepository->findById($paramtest, 'getName');
-    #         my $hatsPrice = $hatsRepository->findById($paramtest, 'getPrice');
-    #         die Dumper($allHats, $hatsId, $hatsName, $hatsPrice);
-    #     }
-    # }
-
     my $tutorialParam = $request->{param}->{keywords};
     if (@$tutorialParam[0] eq 'tutorial') {
         app()->pushToStack('scripts', servicePath('hangman') . '/tutorial.js');
@@ -270,12 +259,12 @@ sub inventorySkins {
 
     my $template = &_::template('hangman::inventory', {
         SKINS => 1,
-        SKIN_ONE => $request->{skinsIdOne} eq 0,
-        SKIN_TWO => $request->{skinsIdTwo} eq 0,
-        SKIN_THREE => $request->{skinsIdThree} eq 0,
-        SKIN_FOUR => $request->{skinsIdFour} eq 0,
-        SKIN_FIVE => $request->{skinsIdFive} eq 0,
-        SKIN_SIX => $request->{skinsIdSix} eq 0,
+        SKIN_ONE => $request->{skinsIdOne} ne 1,
+        SKIN_TWO => $request->{skinsIdTwo} ne 2,
+        SKIN_THREE => $request->{skinsIdThree} ne 3,
+        SKIN_FOUR => $request->{skinsIdFour} ne 4,
+        SKIN_FIVE => $request->{skinsIdFive} ne 5,
+        SKIN_SIX => $request->{skinsIdSix} ne 6,
         ALREADY_EQUIPPED => $request->{alreadyEquipped} eq 1,
         NONE_BOUGHT => $request->{skinsCollection} eq 0,
         ZERO_EQ => $request->{skins} eq 0,
@@ -313,12 +302,12 @@ sub inventoryHats {
 
     my $template = &_::template('hangman::inventory', {
         HATS => 1,
-        HAT_ONE => $request->{hatsIdOne} eq 0,
-        HAT_TWO => $request->{hatsIdTwo} eq 0,
-        HAT_THREE => $request->{hatsIdThree} eq 0,
-        HAT_FOUR => $request->{hatsIdFour} eq 0,
-        HAT_FIVE => $request->{hatsIdFive} eq 0,
-        HAT_SIX => $request->{hatsIdSix} eq 0,
+        HAT_ONE => $request->{hatsIdOne} ne 1,
+        HAT_TWO => $request->{hatsIdTwo} ne 2,
+        HAT_THREE => $request->{hatsIdThree} ne 3,
+        HAT_FOUR => $request->{hatsIdFour} ne 4,
+        HAT_FIVE => $request->{hatsIdFive} ne 5,
+        HAT_SIX => $request->{hatsIdSix} ne 6,
         ALREADY_EQUIPPED => $request->{alreadyEquipped} eq 1,
         NONE_BOUGHT => $request->{hatsCollection} eq 0,
         ZERO_EQ => $request->{hats} eq 0,
@@ -356,12 +345,12 @@ sub inventoryThemes {
 
     my $template = &_::template('hangman::inventory', {
         THEMES => 1,
-        THEME_ONE => $request->{themesIdOne} eq 0,
-        THEME_TWO => $request->{themesIdTwo} eq 0,
-        THEME_THREE => $request->{themesIdThree} eq 0,
-        THEME_FOUR => $request->{themesIdFour} eq 0,
-        THEME_FIVE => $request->{themesIdFive} eq 0,
-        THEME_SIX => $request->{themesIdSix} eq 0,
+        THEME_ONE => $request->{themesIdOne} ne 1,
+        THEME_TWO => $request->{themesIdTwo} ne 2,
+        THEME_THREE => $request->{themesIdThree} ne 3,
+        THEME_FOUR => $request->{themesIdFour} ne 4,
+        THEME_FIVE => $request->{themesIdFive} ne 5,
+        THEME_SIX => $request->{themesIdSix} ne 6,
         ALREADY_EQUIPPED => $request->{alreadyEquipped} eq 1,
         NONE_BOUGHT => $request->{themesCollection} eq 0,
         ZERO_EQ => $request->{themes} eq 0,
@@ -418,11 +407,11 @@ sub shopSkins {
         SKINS => 1,
         COINS => $request->{coins},
         SKIN_ONE => $request->{skinsIdOne} eq 1,
-        SKIN_TWO => $request->{skinsIdTwo} eq 1,
-        SKIN_THREE => $request->{skinsIdThree} eq 1,
-        SKIN_FOUR => $request->{skinsIdFour} eq 1,
-        SKIN_FIVE => $request->{skinsIdFive} eq 1,
-        SKIN_SIX => $request->{skinsIdSix} eq 1,
+        SKIN_TWO => $request->{skinsIdTwo} eq 2,
+        SKIN_THREE => $request->{skinsIdThree} eq 3,
+        SKIN_FOUR => $request->{skinsIdFour} eq 4,
+        SKIN_FIVE => $request->{skinsIdFive} eq 5,
+        SKIN_SIX => $request->{skinsIdSix} eq 6,
         NOT_ENOUGH_COINS => $request->{notEnoughCoins} eq 1,
         ALL_BOUGHT => $request->{skinsCollection} eq 6,
     });
@@ -455,11 +444,11 @@ sub shopHats {
         HATS => 1,
         COINS => $request->{coins},
         HAT_ONE => $request->{hatsIdOne} eq 1,
-        HAT_TWO => $request->{hatsIdTwo} eq 1,
-        HAT_THREE => $request->{hatsIdThree} eq 1,
-        HAT_FOUR => $request->{hatsIdFour} eq 1,
-        HAT_FIVE => $request->{hatsIdFive} eq 1,
-        HAT_SIX => $request->{hatsIdSix} eq 1,
+        HAT_TWO => $request->{hatsIdTwo} eq 2,
+        HAT_THREE => $request->{hatsIdThree} eq 3,
+        HAT_FOUR => $request->{hatsIdFour} eq 4,
+        HAT_FIVE => $request->{hatsIdFive} eq 5,
+        HAT_SIX => $request->{hatsIdSix} eq 6,
         NOT_ENOUGH_COINS => $request->{notEnoughCoins} eq 1,
         ALL_BOUGHT => $request->{hatsCollection} eq 6,
     });
@@ -492,11 +481,11 @@ sub shopThemes {
         THEMES => 1,
         COINS => $request->{coins},
         THEME_ONE => $request->{themesIdOne} eq 1,
-        THEME_TWO => $request->{themesIdTwo} eq 1,
-        THEME_THREE => $request->{themesIdThree} eq 1,
-        THEME_FOUR => $request->{themesIdFour} eq 1,
-        THEME_FIVE => $request->{themesIdFive} eq 1,
-        THEME_SIX => $request->{themesIdSix} eq 1,
+        THEME_TWO => $request->{themesIdTwo} eq 2,
+        THEME_THREE => $request->{themesIdThree} eq 3,
+        THEME_FOUR => $request->{themesIdFour} eq 4,
+        THEME_FIVE => $request->{themesIdFive} eq 5,
+        THEME_SIX => $request->{themesIdSix} eq 6,
         NOT_ENOUGH_COINS => $request->{notEnoughCoins} eq 1,
         ALL_BOUGHT => $request->{themesCollection} eq 6,
     });

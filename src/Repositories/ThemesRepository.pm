@@ -1,9 +1,9 @@
-package Repositories::HatsRepository;
+package Repositories::ThemesRepository;
 
 use strict;
 use warnings;
 
-use Models::Hats;
+use Models::Themes;
 use Data::Dumper;
 
 sub new {
@@ -19,7 +19,7 @@ sub findById {
     my $id = shift;
     my $searchFor = shift;
 
-    my $sql = "SELECT * FROM hats WHERE id = ? ;";
+    my $sql = "SELECT * FROM themes WHERE id = ? ;";
 
     my $dbh = &_::app()->database();
 
@@ -33,9 +33,9 @@ sub findById {
         return;
     }
 
-    my $hats = Models::Hats->new($fields);
+    my $themes = Models::Themes->new($fields);
 
-    return $hats->$searchFor();
+    return $themes->$searchFor();
 }
 
 sub findByName {
@@ -43,7 +43,7 @@ sub findByName {
     my $name = shift;
     my $searchFor = shift;
 
-    my $sql = "SELECT * FROM hats WHERE name = ? ;";
+    my $sql = "SELECT * FROM themes WHERE name = ? ;";
 
     my $dbh = &_::app()->database();
 
@@ -57,15 +57,15 @@ sub findByName {
         return;
     }
 
-    my $hats = Models::Hats->new($fields);
+    my $themes = Models::Themes->new($fields);
 
-    return $hats->$searchFor();
+    return $themes->$searchFor();
 }
 
-sub selectHats {
+sub selectThemes {
     my $self = shift;
 
-    my $sql = "SELECT name FROM hats ;";
+    my $sql = "SELECT name FROM themes ;";
 
     my $dbh = &_::app()->database();
 
@@ -73,18 +73,18 @@ sub selectHats {
 
     $sth->execute() or die $dbh->errstr;
 
-    my $hats = $sth->fetchall_arrayref(0);
+    my $themes = $sth->fetchall_arrayref(0);
 
-    return $hats;
+    return $themes;
 }
 
 # sub create {
 #     my $self = shift;    
 #     my $attributes = shift;
 
-#     my $hats = Models::Hats->new($attributes);
+#     my $themes = Models::Themes->new($attributes);
 
-#     return $hats->save();
+#     return $themes->save();
 # }
 
 1;

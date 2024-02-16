@@ -14,18 +14,19 @@ sub new {
     return $self;
 }
 
-sub findByUsername {
+sub findByUserId {
     my $self = shift;
-    my $username = shift;
+    my $userId = shift;
+    my $skinId = shift;
     my $searchFor = shift;
 
-    my $sql = "SELECT * FROM player_skins WHERE username = ? ;";
+    my $sql = "SELECT * FROM player_skins WHERE user_id = ? and skin_id = ?;";
 
     my $dbh = &_::app()->database();
 
     my $sth = $dbh->prepare($sql);
 
-    $sth->execute($username) or die $dbh->errstr;
+    $sth->execute($userId, $skinId) or die $dbh->errstr;
 
     my $fields = $sth->fetchrow_hashref;
 
@@ -49,20 +50,19 @@ sub create {
 
 sub total {
     my $self = shift;
-    my $username = shift;
+    my $userId = shift;
 
-    my $sql = "SELECT id_1, id_2, id_3, id_4, id_5, id_6 FROM player_skins WHERE username = ? ;";
+    my $sql = "SELECT skin_id FROM player_skins WHERE user_id = ?;";
 
     my $dbh = &_::app()->database();
 
     my $sth = $dbh->prepare($sql);
 
-    $sth->execute($username) or die $dbh->errstr;
+    $sth->execute($userId) or die $dbh->errstr;
 
-    my $total = $sth->fetchrow_arrayref();
+    my $total = $sth->fetchall_arrayref();
 
     return $total;
 }
-
 
 1;

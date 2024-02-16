@@ -18,9 +18,9 @@ sub new {
             'username',
             'wins',
             'losses',
-            'themes',
-            'skins',
-            'hats',
+            'current_theme_id',
+            'current_skin_id',
+            'current_hat_id',
             'coins'
         ],
     };
@@ -62,19 +62,19 @@ sub getLosses {
 sub getThemes {
     my $self = shift;
     
-    return $self->{attributes}->{themes};
+    return $self->{attributes}->{current_theme_id};
 }
 
 sub getSkins {
     my $self = shift;
     
-    return $self->{attributes}->{skins};
+    return $self->{attributes}->{current_skin_id};
 }
 
 sub getHats {
     my $self = shift;
     
-    return $self->{attributes}->{hats};
+    return $self->{attributes}->{current_hat_id};
 }
 
 sub getCoins {

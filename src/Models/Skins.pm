@@ -1,4 +1,4 @@
-package Models::PlayerSkins;
+package Models::Skins;
 
 use strict;
 use warnings;
@@ -13,8 +13,9 @@ sub new {
     my $self = {
         attributes => $attributes,
         columns => [
-            'user_id',
-            'skin_id'
+            'id',
+            'name',
+            'price'
         ],
     };
     bless($self, $class);
@@ -22,16 +23,22 @@ sub new {
     return $self;
 }
 
-sub getUserId {
+sub getId {
     my $self = shift;
 
-    return $self->{attributes}->{user_id};
+    return $self->{attributes}->{id};
 }
 
-sub getSkinId {
+sub getName {
     my $self = shift;
 
-    return $self->{attributes}->{skin_id};
+    return $self->{attributes}->{name};
+}
+
+sub getPrice {
+    my $self = shift;
+
+    return $self->{attributes}->{price};
 }
 
 sub save {
@@ -65,7 +72,7 @@ sub save {
     my $placeholder = join ', ', ('?') x $dataCount;
 
     my $sql = (
-        "INSERT INTO player_skins (@insertData)
+        "INSERT INTO skins (@insertData)
         VALUES ($placeholder) 
         ON DUPLICATE KEY UPDATE @duplicateData;"
     );

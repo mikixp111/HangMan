@@ -1,9 +1,9 @@
-package Repositories::PlayerHatsRepository;
+package Repositories::HatsPlayerRepository;
 
 use strict;
 use warnings;
 
-use Models::PlayerHats;
+use Models::HatsPlayer;
 use Data::Dumper;
 
 sub new {
@@ -14,18 +14,19 @@ sub new {
     return $self;
 }
 
-sub findByUsername {
+sub findByUserId {
     my $self = shift;
-    my $username = shift;
+    my $userId = shift;
+    my $hatId = shift;
     my $searchFor = shift;
 
-    my $sql = "SELECT * FROM player_hats WHERE username = ? ;";
+    my $sql = "SELECT * FROM hats_player WHERE user_id = ? and hat_id = ?;";
 
     my $dbh = &_::app()->database();
 
     my $sth = $dbh->prepare($sql);
 
-    $sth->execute($username) or die $dbh->errstr;
+    $sth->execute($userId, $hatId) or die $dbh->errstr;
 
     my $fields = $sth->fetchrow_hashref;
 
@@ -33,7 +34,7 @@ sub findByUsername {
         return;
     }
 
-    my $playerHats = Models::PlayerHats->new($fields);
+    my $playerHats = Models::HatsPlayer->new($fields);
 
     return $playerHats->$searchFor();
 }
@@ -42,24 +43,24 @@ sub create {
     my $self = shift;    
     my $attributes = shift;
 
-    my $playerHats = Models::PlayerHats->new($attributes);
+    my $playerHats = Models::HatsPlayer->new($attributes);
 
     return $playerHats->save();
 }
 
 sub total {
     my $self = shift;
-    my $username = shift;
+    my $userId = shift;
 
-    my $sql = "SELECT id_1, id_2, id_3, id_4, id_5, id_6 FROM player_hats WHERE username = ? ;";
+    my $sql = "SELECT hat_id FROM hats_player WHERE user_id = ?;";
 
     my $dbh = &_::app()->database();
 
     my $sth = $dbh->prepare($sql);
 
-    $sth->execute($username) or die $dbh->errstr;
+    $sth->execute($userId) or die $dbh->errstr;
 
-    my $total = $sth->fetchrow_arrayref();
+    my $total = $sth->fetchall_arrayref();
 
     return $total;
 }

@@ -1,4 +1,4 @@
-package Models::PlayerHats;
+package Models::HatsPlayer;
 
 use strict;
 use warnings;
@@ -13,14 +13,8 @@ sub new {
     my $self = {
         attributes => $attributes,
         columns => [
-            'username',
-            'id_0',
-            'id_1',
-            'id_2',
-            'id_3',
-            'id_4',
-            'id_5',
-            'id_6'
+            'user_id',
+            'hat_id'
         ],
     };
     bless($self, $class);
@@ -28,52 +22,16 @@ sub new {
     return $self;
 }
 
-sub getUsername {
+sub getUserId {
     my $self = shift;
 
-    return $self->{attributes}->{username};
+    return $self->{attributes}->{user_id};
 }
 
-sub getIdZero {
+sub getHatId {
     my $self = shift;
 
-    return $self->{attributes}->{id_0};
-}
-
-sub getIdOne {
-    my $self = shift;
-
-    return $self->{attributes}->{id_1};
-}
-
-sub getIdTwo {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_2};
-}
-
-sub getIdThree {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_3};
-}
-
-sub getIdFour {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_4};
-}
-
-sub getIdFive {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_5};
-}
-
-sub getIdSix {
-    my $self = shift;
-    
-    return $self->{attributes}->{id_6};
+    return $self->{attributes}->{hat_id};
 }
 
 sub save {
@@ -107,7 +65,7 @@ sub save {
     my $placeholder = join ', ', ('?') x $dataCount;
 
     my $sql = (
-        "INSERT INTO player_hats (@insertData)
+        "INSERT INTO hats_player (@insertData)
         VALUES ($placeholder) 
         ON DUPLICATE KEY UPDATE @duplicateData;"
     );

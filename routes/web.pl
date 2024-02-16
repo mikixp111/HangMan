@@ -9,8 +9,10 @@ use Foundation::Appify;
 use Repositories::PlayerRepository;
 use Repositories::PlayerThemesRepository;
 use Repositories::PlayerSkinsRepository;
-use Repositories::PlayerHatsRepository;
+use Repositories::HatsPlayerRepository;
 use Repositories::HatsRepository;
+use Repositories::SkinsRepository;
+use Repositories::ThemesRepository;
 
 
 Http::Route::group({
@@ -44,9 +46,9 @@ Http::Route::group({
                 'username' => $username,
                 'wins' => $wins,
                 'losses' => $losses,
-                'themes' => $themes,
-                'skins' => $skins,
-                'hats' => $hats,
+                'current_theme_id' => $themes,
+                'current_skin_id' => $skins,
+                'current_hat_id' => $hats,
                 'coins' => $coins,
             };
             my $skinColor = 'black';
@@ -86,12 +88,12 @@ Http::Route::group({
             my $playerThemesRepository = Repositories::PlayerThemesRepository->new();
 
             my $themesIdZero = 1;
-            my $themesIdOne = $playerThemesRepository->findByUsername($username, 'getIdOne');
-            my $themesIdTwo = $playerThemesRepository->findByUsername($username, 'getIdTwo');
-            my $themesIdThree = $playerThemesRepository->findByUsername($username, 'getIdThree');
-            my $themesIdFour = $playerThemesRepository->findByUsername($username, 'getIdFour');
-            my $themesIdFive = $playerThemesRepository->findByUsername($username, 'getIdFive');
-            my $themesIdSix = $playerThemesRepository->findByUsername($username, 'getIdSix');
+            my $themesIdOne = $playerThemesRepository->findByUserId($userId, 1, 'getThemeId');
+            my $themesIdTwo = $playerThemesRepository->findByUserId($userId, 2, 'getThemeId');
+            my $themesIdThree = $playerThemesRepository->findByUserId($userId, 3, 'getThemeId');
+            my $themesIdFour = $playerThemesRepository->findByUserId($userId, 4, 'getThemeId');
+            my $themesIdFive = $playerThemesRepository->findByUserId($userId, 5, 'getThemeId');
+            my $themesIdSix = $playerThemesRepository->findByUserId($userId, 6, 'getThemeId');
 
             $request->{themesIdOne} = $themesIdOne;
             $request->{themesIdTwo} = $themesIdTwo;
@@ -99,29 +101,22 @@ Http::Route::group({
             $request->{themesIdFour} = $themesIdFour;
             $request->{themesIdFive} = $themesIdFive;
             $request->{themesIdSix} = $themesIdSix;
-            my $playerThemes = {
-                'username' => $username,
-                'id_0' => 1,
-                'id_1' => $themesIdOne,
-                'id_2' => $themesIdTwo,
-                'id_3' => $themesIdThree,
-                'id_4' => $themesIdFour,
-                'id_5' => $themesIdFive,
-                'id_6' => $themesIdSix,
-            };
-            $request->{themesCollection} = $themesIdOne + $themesIdTwo + $themesIdThree + $themesIdFour + $themesIdFive + $themesIdSix;
+
+            my $totalThemes = $playerThemesRepository->total($userId);
+            my $themesCollection = @$totalThemes;
+            $request->{themesCollection} = $themesCollection;
 
 
             # Player Skins
             my $playerSkinsRepository = Repositories::PlayerSkinsRepository->new();
 
             my $skinsIdZero = 1;
-            my $skinsIdOne = $playerSkinsRepository->findByUsername($username, 'getIdOne');
-            my $skinsIdTwo = $playerSkinsRepository->findByUsername($username, 'getIdTwo');
-            my $skinsIdThree = $playerSkinsRepository->findByUsername($username, 'getIdThree');
-            my $skinsIdFour = $playerSkinsRepository->findByUsername($username, 'getIdFour');
-            my $skinsIdFive = $playerSkinsRepository->findByUsername($username, 'getIdFive');
-            my $skinsIdSix = $playerSkinsRepository->findByUsername($username, 'getIdSix');
+            my $skinsIdOne = $playerSkinsRepository->findByUserId($userId, 1, 'getSkinId');
+            my $skinsIdTwo = $playerSkinsRepository->findByUserId($userId, 2, 'getSkinId');
+            my $skinsIdThree = $playerSkinsRepository->findByUserId($userId, 3, 'getSkinId');
+            my $skinsIdFour = $playerSkinsRepository->findByUserId($userId, 4, 'getSkinId');
+            my $skinsIdFive = $playerSkinsRepository->findByUserId($userId, 5, 'getSkinId');
+            my $skinsIdSix = $playerSkinsRepository->findByUserId($userId, 6, 'getSkinId');
 
             $request->{skinsIdOne} = $skinsIdOne;
             $request->{skinsIdTwo} = $skinsIdTwo;
@@ -129,29 +124,21 @@ Http::Route::group({
             $request->{skinsIdFour} = $skinsIdFour;
             $request->{skinsIdFive} = $skinsIdFive;
             $request->{skinsIdSix} = $skinsIdSix;
-            my $playerSkins = {
-                'username' => $username,
-                'id_0' => 1,
-                'id_1' => $skinsIdOne,
-                'id_2' => $skinsIdTwo,
-                'id_3' => $skinsIdThree,
-                'id_4' => $skinsIdFour,
-                'id_5' => $skinsIdFive,
-                'id_6' => $skinsIdSix,
-            };
-            $request->{skinsCollection} = $skinsIdOne + $skinsIdTwo + $skinsIdThree + $skinsIdFour + $skinsIdFive + $skinsIdSix;
 
+            my $totalSkins = $playerSkinsRepository->total($userId);
+            my $skinsCollection = @$totalSkins;
+            $request->{skinsCollection} = $skinsCollection;
 
             # Player Hats
-            my $playerHatsRepository = Repositories::PlayerHatsRepository->new();
-
+            my $hatsPlayerRepository = Repositories::HatsPlayerRepository->new();
+                    
             my $hatsIdZero = 1;
-            my $hatsIdOne = $playerHatsRepository->findByUsername($username, 'getIdOne');
-            my $hatsIdTwo = $playerHatsRepository->findByUsername($username, 'getIdTwo');
-            my $hatsIdThree = $playerHatsRepository->findByUsername($username, 'getIdThree');
-            my $hatsIdFour = $playerHatsRepository->findByUsername($username, 'getIdFour');
-            my $hatsIdFive = $playerHatsRepository->findByUsername($username, 'getIdFive');
-            my $hatsIdSix = $playerHatsRepository->findByUsername($username, 'getIdSix');
+            my $hatsIdOne = $hatsPlayerRepository->findByUserId($userId, 1, 'getHatId');
+            my $hatsIdTwo = $hatsPlayerRepository->findByUserId($userId, 2, 'getHatId');
+            my $hatsIdThree = $hatsPlayerRepository->findByUserId($userId, 3, 'getHatId');
+            my $hatsIdFour = $hatsPlayerRepository->findByUserId($userId, 4, 'getHatId');
+            my $hatsIdFive = $hatsPlayerRepository->findByUserId($userId, 5, 'getHatId');
+            my $hatsIdSix = $hatsPlayerRepository->findByUserId($userId, 6, 'getHatId');
 
             $request->{hatsIdOne} = $hatsIdOne;
             $request->{hatsIdTwo} = $hatsIdTwo;
@@ -159,21 +146,48 @@ Http::Route::group({
             $request->{hatsIdFour} = $hatsIdFour;
             $request->{hatsIdFive} = $hatsIdFive;
             $request->{hatsIdSix} = $hatsIdSix;
-            my $playerHats = {
-                'username' => $username,
-                'id_0' => 1,
-                'id_1' => $hatsIdOne,
-                'id_2' => $hatsIdTwo,
-                'id_3' => $hatsIdThree,
-                'id_4' => $hatsIdFour,
-                'id_5' => $hatsIdFive,
-                'id_6' => $hatsIdSix,
-            };
-            $request->{hatsCollection} = $hatsIdOne + $hatsIdTwo + $hatsIdThree + $hatsIdFour + $hatsIdFive + $hatsIdSix;
+
+            my $totalHats = $hatsPlayerRepository->total($userId);
+            my $hatsCollection = @$totalHats;
+            $request->{hatsCollection} = $hatsCollection;
+
+
+            # Skins
+            my $skinsRepository = Repositories::SkinsRepository->new();
+            # my $skinId = 1;
+            # my $skinsId = $skinsRepository->findById($skinId, 'getId');
+            # my $skinsName = $skinsRepository->findById($skinId, 'getName');
+            # my $skinsPrice = $skinsRepository->findById($skinId, 'getPrice');
+
+            # $request->{skinsId} = $skinsId;
+            # $request->{skinsName} = $skinsName;
+            # $request->{skinsPrice} = $skinsPrice;
+            # my $skins = {
+            #     'id' => $skinsId,
+            #     'name' => $skinsName,
+            #     'price' => $skinsPrice,
+            # };
+
+
+            # Themes
+            my $themesRepository = Repositories::ThemesRepository->new();
+            # my $themeId = 1;
+            # my $themesId = $themesRepository->findById($themeId, 'getId');
+            # my $themesName = $themesRepository->findById($themeId, 'getName');
+            # my $themesPrice = $themesRepository->findById($themeId, 'getPrice');
+
+            # $request->{themesId} = $themesId;
+            # $request->{themesName} = $themesName;
+            # $request->{themesPrice} = $themesPrice;
+            # my $themes = {
+            #     'id' => $themesId,
+            #     'name' => $themesName,
+            #     'price' => $themesPrice,
+            # };
 
 
             # Hats
-            # my $hatsRepository = Repositories::HatsRepository->new();
+            my $hatsRepository = Repositories::HatsRepository->new();
             # my $hatId = 1;
             # my $hatsId = $hatsRepository->findById($hatId, 'getId');
             # my $hatsName = $hatsRepository->findById($hatId, 'getName');
@@ -205,23 +219,9 @@ Http::Route::group({
                 'coins' => 0,
             };
 
-            my $inventoryCreate = {
-                'username' => $request->param('username'),
-                'id_0' => 1,
-                'id_1' => 0,
-                'id_2' => 0,
-                'id_3' => 0,
-                'id_4' => 0,
-                'id_5' => 0,
-                'id_6' => 0,
-            };
-
             if ($request->param('username') ne undef) {
                 unless ($usernameExists) {
                     $playerRepository->create($playerCreate);
-                    $playerThemesRepository->create($inventoryCreate);
-                    $playerSkinsRepository->create($inventoryCreate);
-                    $playerHatsRepository->create($inventoryCreate);
                     $request->{tutorial} = 1;
                     print $request->redirect('https://apps.test/apps/hangman?tutorial');
                 }
@@ -259,171 +259,98 @@ Http::Route::group({
 
             # Shop/Inventory
             my $isItemOwned = 0;
-            my $itemId = 0;
+            my $itemId = undef;
             my $itemName = '';
             my $itemPrice = 0;
             my $itemType = '';
             my $currentItem = 0;
-            my $itemRepository = 0;
-            my $itemList = 0;
+            my $itemRepository;
+            my $itemRepositoryTest = 0;
+            my $itemsPlayerCreate = {
+                'user_id' => $userId,
+                'hat_id' => 0,
+            };
+            my $shopType;
 
             my @cgiParam = $request->param();
 
 
             # Skins -> Shop/Inventory
-            if ($cgiParam[0] eq 'defaultSkin' || $cgiParam[0] eq 'red' || $cgiParam[0] eq 'blue' || $cgiParam[0] eq 'yellow' || $cgiParam[0] eq 'green' || $cgiParam[0] eq 'orange' || $cgiParam[0] eq 'purple') {
-                $itemType = 'skins';
-                $currentItem = $skins;
-                $itemList = $playerSkins;
-                $itemRepository = $playerSkinsRepository;
-            }
-            if ($cgiParam[0] eq 'defaultSkin') {
-                $isItemOwned = $skinsIdZero;
-                $itemName = 'defaultSkin';
-            }
-            if ($cgiParam[0] eq 'red') {
-                $itemName = 'red';
-                $itemId = 1;
-                $itemPrice = 12;
-                $isItemOwned = $skinsIdOne;
-            }
-            if ($cgiParam[0] eq 'blue') {
-                $itemName = 'blue';
-                $itemId = 2;
-                $itemPrice = 12;
-                $isItemOwned = $skinsIdTwo;
-            }
-            if ($cgiParam[0] eq 'yellow') {
-                $itemName = 'yellow';
-                $itemId = 3;
-                $itemPrice = 12;
-                $isItemOwned = $skinsIdThree;
-            }
-            if ($cgiParam[0] eq 'green') {
-                $itemName = 'green';
-                $itemId = 4;
-                $itemPrice = 12;
-                $isItemOwned = $skinsIdFour;
-            }
-            if ($cgiParam[0] eq 'orange') {
-                $itemName = 'orange';
-                $itemId = 5;
-                $itemPrice = 12;
-                $isItemOwned = $skinsIdFive;
-            }
-            if ($cgiParam[0] eq 'purple') {
-                $itemName = 'purple';
-                $itemId = 6;
-                $itemPrice = 12;
-                $isItemOwned = $skinsIdSix;
+            my $allSkins = $skinsRepository->selectSkins();
+            foreach my $skin (@$allSkins) {
+                if (@$skin[0] eq $cgiParam[0]) {
+                    $itemType = 'current_skin_id';
+                    $shopType = 'skins';
+                    $currentItem = $skins;
+                    $itemRepository = $playerSkinsRepository;
+                    $itemId = $skinsRepository->findByName(@$skin[0], 'getId');
+                    $itemName = $skinsRepository->findByName(@$skin[0], 'getName');
+                    $itemPrice = $skinsRepository->findByName(@$skin[0], 'getPrice');
+                    $isItemOwned = $playerSkinsRepository->findByUserId($userId, $itemId, 'getSkinId');
+                    if ($itemId eq 0) {
+                        $isItemOwned = 0;
+                    }
+                    $itemsPlayerCreate = {
+                        'user_id' => $userId,
+                        'skin_id' => $itemId,
+                    };
+                }
             }
 
 
             # Themes -> Shop/Inventory
-            if ($cgiParam[0] eq 'defaultTheme' || $cgiParam[0] eq 'french' || $cgiParam[0] eq 'caribbean' || $cgiParam[0] eq 'nativeIsland' || $cgiParam[0] eq 'nativeJungle' || $cgiParam[0] eq 'western' || $cgiParam[0] eq 'roman') {
-                $itemType = 'themes';
-                $currentItem = $themes;
-                $itemList = $playerThemes;
-                $itemRepository = $playerThemesRepository;
-            }
-            if ($cgiParam[0] eq 'defaultTheme') {
-                $isItemOwned = $themesIdZero;
-                $itemName = 'defaultTheme';
-            }
-            if ($cgiParam[0] eq 'french') {
-                $itemName = 'french';
-                $itemId = 1;
-                $itemPrice = 20;
-                $isItemOwned = $themesIdOne;
-            }
-            if ($cgiParam[0] eq 'caribbean') {
-                $itemName = 'caribbean';
-                $itemId = 2;
-                $itemPrice = 18;
-                $isItemOwned = $themesIdTwo;
-            }
-            if ($cgiParam[0] eq 'nativeIsland') {
-                $itemName = 'nativeIsland';
-                $itemId = 3;
-                $itemPrice = 16;
-                $isItemOwned = $themesIdThree;
-            }
-            if ($cgiParam[0] eq 'nativeJungle') {
-                $itemName = 'nativeJungle';
-                $itemId = 4;
-                $itemPrice = 15;
-                $isItemOwned = $themesIdFour;
-            }
-            if ($cgiParam[0] eq 'western') {
-                $itemName = 'western';
-                $itemId = 5;
-                $itemPrice = 18;
-                $isItemOwned = $themesIdFive;
-            }
-            if ($cgiParam[0] eq 'roman') {
-                $itemName = 'roman';
-                $itemId = 6;
-                $itemPrice = 22;
-                $isItemOwned = $themesIdSix;
+            my $allThemes = $themesRepository->selectThemes();
+            foreach my $theme (@$allThemes) {
+                if (@$theme[0] eq $cgiParam[0]) {
+                    $itemType = 'current_theme_id';
+                    $shopType = 'themes';
+                    $currentItem = $themes;
+                    $itemRepository = $playerThemesRepository;
+                    $itemId = $themesRepository->findByName(@$theme[0], 'getId');
+                    $itemName = $themesRepository->findByName(@$theme[0], 'getName');
+                    $itemPrice = $themesRepository->findByName(@$theme[0], 'getPrice');
+                    $isItemOwned = $playerThemesRepository->findByUserId($userId, $itemId, 'getThemeId');
+                    if ($itemId eq 0) {
+                        $isItemOwned = 0;
+                    }
+                    $itemsPlayerCreate = {
+                        'user_id' => $userId,
+                        'theme_id' => $itemId,
+                    };
+                }
             }
 
 
             # Hats -> Shop/Inventory
-            if ($cgiParam[0] eq "defaultHat" || $cgiParam[0] eq 'crown' || $cgiParam[0] eq 'pirateHat' || $cgiParam[0] eq 'baseballCap' || $cgiParam[0] eq 'gladiatorHelmet' || $cgiParam[0] eq 'vikingHelmet' || $cgiParam[0] eq 'strawHat') {
-                $itemType = 'hats';
-                $currentItem = $hats;
-                $itemList = $playerHats;
-                $itemRepository = $playerHatsRepository;
-            }
-            if ($cgiParam[0] eq 'defaultHat') {
-                $isItemOwned = $hatsIdZero;
-                $itemName = 'defaultHat';
-            }
-            if ($cgiParam[0] eq 'crown') {
-                $itemName = 'crown';
-                $itemId = 1;
-                $itemPrice = 18;
-                $isItemOwned = $hatsIdOne;
-            }
-            if ($cgiParam[0] eq 'pirateHat') {
-                $itemName = 'pirateHat';
-                $itemId = 2;
-                $itemPrice = 16;
-                $isItemOwned = $hatsIdTwo;
-            }
-            if ($cgiParam[0] eq 'baseballCap') {
-                $itemName = 'baseballCap';
-                $itemId = 3;
-                $itemPrice = 12;
-                $isItemOwned = $hatsIdThree;
-            }
-            if ($cgiParam[0] eq 'gladiatorHelmet') {
-                $itemName = 'gladiatorHelmet';
-                $itemId = 4;
-                $itemPrice = 20;
-                $isItemOwned = $hatsIdFour;
-            }
-            if ($cgiParam[0] eq 'vikingHelmet') {
-                $itemName = 'vikingHelmet';
-                $itemId = 5;
-                $itemPrice = 14;
-                $isItemOwned = $hatsIdFive;
-            }
-            if ($cgiParam[0] eq 'strawHat') {
-                $itemName = 'strawHat';
-                $itemId = 6;
-                $itemPrice = 18;
-                $isItemOwned = $hatsIdSix;
+            my $allHats = $hatsRepository->selectHats();
+            foreach my $hat (@$allHats) {
+                if (@$hat[0] eq $cgiParam[0]) {
+                    $itemType = 'current_hat_id';
+                    $shopType = 'hats';
+                    $currentItem = $hats;
+                    $itemRepository = $hatsPlayerRepository;
+                    $itemId = $hatsRepository->findByName(@$hat[0], 'getId');
+                    $itemName = $hatsRepository->findByName(@$hat[0], 'getName');
+                    $itemPrice = $hatsRepository->findByName(@$hat[0], 'getPrice');
+                    $isItemOwned = $hatsPlayerRepository->findByUserId($userId, $itemId, 'getHatId');
+                    if ($itemId eq 0) {
+                        $isItemOwned = 0;
+                    }
+                    $itemsPlayerCreate = {
+                        'user_id' => $userId,
+                        'hat_id' => $itemId,
+                    };
+                }
             }
 
 
             # inventory
-            if ($isItemOwned eq 1 && $request->param($itemName) eq 1) {
+            if ($isItemOwned eq $itemId && $request->param($itemName) eq 1) {
                 if ($currentItem ne $itemId) {
                     $player->{$itemType} = $itemId;
                     $playerRepository->create($player);
                     print($request->redirect(
-                        -url => "/apps/hangman/inventory/$itemType"
+                        -url => "/apps/hangman/inventory/$shopType"
                     ));
                 }
                 else {
@@ -433,14 +360,13 @@ Http::Route::group({
 
 
             # shop
-            if ($isItemOwned eq 0 && $request->param($itemName) eq $itemPrice) {
+            if ($isItemOwned ne $itemId && $request->param($itemName) eq $itemPrice) {
                 if ($coins >= $itemPrice) {
-                    $itemList->{'id_' . $itemId} = 1;
-                    $itemRepository->create($itemList);
+                    $itemRepository->create($itemsPlayerCreate);
                     $player->{'coins'} = $coins - $itemPrice;
                     $playerRepository->create($player);
                     print($request->redirect(
-                        -url => "/apps/hangman/shop/$itemType"
+                        -url => "/apps/hangman/shop/$shopType"
                     ));
                 }
                 else {
@@ -551,107 +477,61 @@ Http::Route::group({
 
                 $request->{lossesFirst} = $playerRepository->findByUsername($userFirst, 'getLosses');
 
-                my $skinsFirst = $playerSkinsRepository->total($userFirst);
+                my $firstUserId = $playerRepository->findByUsername($userFirst, 'getUserId');
+                my $totalSkinsFirst = $playerSkinsRepository->total($firstUserId);
+                my $skinsCollectionFirst = @$totalSkinsFirst;
+                $request->{skinsFirst} = $skinsCollectionFirst;
 
-                my $skinsFirstSum = 0;
+                my $firstUserId = $playerRepository->findByUsername($userFirst, 'getUserId');
+                my $totalHatsFirst = $hatsPlayerRepository->total($firstUserId);
+                my $hatsCollectionFirst = @$totalHatsFirst;
+                $request->{hatsFirst} = $hatsCollectionFirst;
 
-                foreach my $element (@$skinsFirst) {
-                    $skinsFirstSum += $element;
-                }
-
-                $request->{skinsFirst} = $skinsFirstSum;
-
-                my $hatsFirst = $playerHatsRepository->total($userFirst);
-
-                my $hatsFirstSum = 0;
-
-                foreach my $element (@$hatsFirst) {
-                    $hatsFirstSum += $element;
-                }
-
-                $request->{hatsFirst} = $hatsFirstSum;
-
-                my $themesFirst = $playerThemesRepository->total($userFirst);
-
-                my $themesFirstSum = 0;
-
-                foreach my $element (@$themesFirst) {
-                    $themesFirstSum += $element;
-                }
-
-                $request->{themesFirst} = $themesFirstSum;
+                my $firstUserId = $playerRepository->findByUsername($userFirst, 'getUserId');
+                my $totalThemesFirst = $playerThemesRepository->total($firstUserId);
+                my $themesCollectionFirst = @$totalThemesFirst;
+                $request->{themesFirst} = $themesCollectionFirst;
 
                 # second
                 $request->{winsSecond} = $playerRepository->findByUsername($userSecond, 'getWins');
 
                 $request->{lossesSecond} = $playerRepository->findByUsername($userSecond, 'getLosses');
 
-                my $skinsSecond = $playerSkinsRepository->total($userSecond);
+                my $secondUserId = $playerRepository->findByUsername($userSecond, 'getUserId');
+                my $totalSkinsSecond = $playerSkinsRepository->total($secondUserId);
+                my $skinsCollectionSecond = @$totalSkinsSecond;
+                $request->{skinsSecond} = $skinsCollectionSecond;
 
-                my $skinsSecondSum = 0;
+                my $secondUserId = $playerRepository->findByUsername($userSecond, 'getUserId');
+                my $totalHatsSecond = $hatsPlayerRepository->total($secondUserId);
+                my $hatsCollectionSecond = @$totalHatsSecond;
+                $request->{hatsSecond} = $hatsCollectionSecond;
 
-                foreach my $element (@$skinsSecond) {
-                    $skinsSecondSum += $element;
-                }
-
-                $request->{skinsSecond} = $skinsSecondSum;
-
-                my $hatsSecond = $playerHatsRepository->total($userSecond);
-
-                my $hatsSecondSum = 0;
-
-                foreach my $element (@$hatsSecond) {
-                    $hatsSecondSum += $element;
-                }
-
-                $request->{hatsSecond} = $hatsSecondSum;
-
-                my $themesSecond = $playerThemesRepository->total($userSecond);
-
-                my $themesSecondSum = 0;
-
-                foreach my $element (@$themesSecond) {
-                    $themesSecondSum += $element;
-                }
-
-                $request->{themesSecond} = $themesSecondSum;
+                my $secondUserId = $playerRepository->findByUsername($userSecond, 'getUserId');
+                my $totalThemesSecond = $playerThemesRepository->total($secondUserId);
+                my $themesCollectionSecond = @$totalThemesSecond;
+                $request->{themesSecond} = $themesCollectionSecond;
 
                 # third
                 $request->{winsThird} = $playerRepository->findByUsername($userThird, 'getWins');
 
                 $request->{lossesThird} = $playerRepository->findByUsername($userThird, 'getLosses');
 
-                my $skinsThird = $playerSkinsRepository->total($userThird);
+                my $thirdUserId = $playerRepository->findByUsername($userThird, 'getUserId');
+                my $totalSkinsThird = $playerSkinsRepository->total($thirdUserId);
+                my $skinsCollectionThird = @$totalSkinsThird;
+                $request->{skinsThird} = $skinsCollectionThird;
 
-                my $skinsThirdSum = 0;
+                my $thirdUserId = $playerRepository->findByUsername($userThird, 'getUserId');
+                my $totalHatsThird = $hatsPlayerRepository->total($thirdUserId);
+                my $hatsCollectionThird = @$totalHatsThird;
+                $request->{hatsThird} = $hatsCollectionThird;
 
-                foreach my $element (@$skinsThird) {
-                    $skinsThirdSum += $element;
-                }
-
-                $request->{skinsThird} = $skinsThirdSum;
-
-                my $hatsThird = $playerHatsRepository->total($userThird);
-
-                my $hatsThirdSum = 0;
-
-                foreach my $element (@$hatsThird) {
-                    $hatsThirdSum += $element;
-                }
-
-                $request->{hatsThird} = $hatsThirdSum;
-
-                my $themesThird = $playerThemesRepository->total($userThird);
-
-                my $themesThirdSum = 0;
-
-                foreach my $element (@$themesThird) {
-                    $themesThirdSum += $element;
-                }
-
-                $request->{themesThird} = $themesThirdSum;
+                my $thirdUserId = $playerRepository->findByUsername($userThird, 'getUserId');
+                my $totalThemesThird = $playerThemesRepository->total($thirdUserId);
+                my $themesCollectionThird = @$totalThemesThird;
+                $request->{themesThird} = $themesCollectionThird;
             };
-
 
             return &$next($request);
         },
